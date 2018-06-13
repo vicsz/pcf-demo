@@ -30,5 +30,41 @@ You will see corresponding PCF application information.
 
 Check the */actuator* endpoint for available actuator URLS.
 
-Including: */info , /logfile , /env *
+Including: */info , /logfile , /env , /metrics *
+
+## PCF Metrics - gathering Application Metrics Information
+
+Metric data can be sent to an Metric Platform of your choice including PCF Metrics.
+
+For PCF Metrics this will require setting up a PCF Metrics Forwarder Serivce.
+
+To check if it's available:
+
+```sh
+cf marketplace
+```
+
+Verify that the *metrics-forwarder* service is there.
+
+To create the Service:
+
+```sh
+cf create-service metrics-forwarder unlimited myforwarder
+```
+
+It will need to be bound to your application:
+
+```sh
+cf bind-service pcf-demo myforwarder
+```
+
+Then restart your app:
+```sh
+cf restage pcf-demo
+```
+
+
+
+
+
 
